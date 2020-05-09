@@ -1,0 +1,19 @@
+version: '3'
+services:
+  grpc:
+    tty: true
+    build: ./docker/api
+    working_dir: /go/src/SeijiOmi/grpc-example
+    ports:
+      - "8080:8080"
+    volumes:
+      - .:/go/src/SeijiOmi/grpc-example
+    networks:
+      - my_network
+
+networks:
+  my_network:
+    external: true
+
+
+    # protoc -I example/ example/example.proto --go_out=plugins=grpc:example
